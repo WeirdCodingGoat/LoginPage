@@ -1,0 +1,127 @@
+
+<PageManager>:
+    LoginPage:
+        name: "login"
+    NewAccountPage:
+        name: "newaccount"
+    CorrectScreen:
+        name: "correct"
+    WrongScreen:
+        name: "wrong"
+
+<LoginPage>:
+    BoxLayout:
+        orientation:"vertical"
+        spacing: 5
+        Label:
+            text: "Login page."
+        Button:
+            size_hint: .3, .1
+            text: "Don't Have an account?"
+            on_release: root.get_logged_in(pass.text, user.text)
+        BoxLayout:
+            orientation: "horizontal"
+            StackLayout:
+                orientation: "rl-tb"
+                spacing: "10dp"
+                Label:
+                    text: "username"
+                    #pos_hint: {"center_y": 0}
+                    #pos_hint: {"x": .5}
+                    #size_hint: 0.5, 0.01
+                Label:
+                    text: "Password"
+                    #pos_hint: {"center_y": 0}
+                    #pos_hint: {"x": .5}
+                    #size_hint: 1, 0.01
+            BoxLayout:
+                orientation: "vertical"
+                TextInput:
+                    id: user
+                    size_hint: 0.5, 0.1
+                    pos_hint: {"center_y": .5}
+                    pos_hint: {"center_x": .5}
+                TextInput:
+                    id: pass
+                    size_hint: 0.5, 0.1
+                    pos_hint: {"center_y": .5}
+                    pos_hint: {"center_x": .5}
+                Button:
+                    pos_hint: {"center_x": .5}
+                    size_hint: .5 , .2
+                    text: "Enter"
+                   # on_release: root.get_logged_in(pass.text, user.text)
+
+<NewAccountPage>:
+    BoxLayout:
+        orientation:"vertical"
+        spacing: 5
+        Label:
+            text: "Make a new account page."
+        Button:
+            size_hint: .3, .1
+            text: "Have an account?"
+            on_release: root.place_holder()
+        BoxLayout:
+            orientation: "horizontal"
+            StackLayout:
+                orientation: "rl-tb"
+                spacing: "10dp"
+                Label:
+                    text: "New username"
+                    #pos_hint: {"center_y": 0}
+                    #pos_hint: {"x": .5}
+                    #size_hint: 0.5, 0.01
+                Label:
+                    text: "Password"
+                    #pos_hint: {"center_y": 0}
+                    #pos_hint: {"x": .5}
+                    #size_hint: 1, 0.01
+                Label:
+                    text: "Re-enter password"
+                    #pos_hint: {"center_y": 0}
+                    #pos_hint: {"x": .5}
+                    #size_hint: 1, 0.01
+            BoxLayout:
+                orientation: "vertical"
+                TextInput:
+                    id: newname
+                    size_hint: 0.5, 0.1
+                    pos_hint: {"center_y": .5}
+                    pos_hint: {"center_x": .5}
+                TextInput:
+                    id: newpass
+                    size_hint: 0.5, 0.1
+                    pos_hint: {"center_y": .5}
+                    pos_hint: {"center_x": .5}
+                TextInput:
+                    id: secondenter
+                    size_hint: 0.5, 0.1
+                    pos_hint: {"center_y": .5}
+                    pos_hint: {"center_x": .5}
+                Button:
+                    pos_hint: {"center_x": .5}
+                    size_hint: .5 , .2
+                    text: "Enter"
+                    on_release: root.answer_question(newpass.text,secondenter.text)
+
+
+<WrongScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "5"
+        Label:
+            text: "WRONG"
+        Button:
+            text: "Skip -->"
+            on_release: root.next()
+
+<CorrectScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "5"
+        Label:
+            text: "CORRECT"
+        Button:
+            text: "Next -->"
+            on_release: root.next()
