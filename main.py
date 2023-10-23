@@ -58,11 +58,12 @@ def req_handling(check_list):
         return code_handle
             
 class LoginPage(Screen):
-    def get_logged_in(self,password,username):
-        self.manager.current = "correct"
+    def get_logged_in(self,username,password):
+        code_var = req_handling(password_requirements(password,upper_letters))
+        print(code_var)
 
-    def place_holder(self): #Screen change function(s)?
-        print("You need a function, put 'root.' here")
+    def switch_screen(self): #Screen change function(s)?
+        self.manager.current = "newaccount"
 
 
 class NewAccountPage(Screen):
