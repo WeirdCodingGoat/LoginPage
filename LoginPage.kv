@@ -4,8 +4,8 @@
         name: "login"
     NewAccountPage:
         name: "newaccount"
-    CorrectScreen:
-        name: "correct"
+    HomePage:
+        name: "home"
     WrongScreen:
         name: "wrong"
 
@@ -17,7 +17,7 @@
             text: "Login page."
         Button:
             size_hint: .3, .1
-            text: "Don't Have an account?"
+            text: "Don't have an account?"
             on_release: root.switch_screen()
         BoxLayout:
             orientation: "vertical"
@@ -29,6 +29,7 @@
             TextInput:
                 id: password
                 size_hint: 0.5, 0.1
+                hint_text: "Input Password"
                 pos_hint: {"center_y": .5}
                 pos_hint: {"center_x": .5}
             Button:
@@ -46,41 +47,34 @@
         Button:
             size_hint: .3, .1
             text: "Have an account?"
-            on_release: root.place_holder()
+            on_release: root.switch_screen()
         BoxLayout:
             orientation: "horizontal"
             StackLayout:
                 orientation: "rl-tb"
                 spacing: "10dp"
-                Label:
-                    text: "New username"
+                #Label:
+                  #  text: 'You must have at least 8 characters\nYou must have at least 1 number.\nYou must have at least 1 uppercase letter.\nYou must have at least 1 lowercase letter.\nYou must have at least 1 "special" character.\nYou have a space in your password\nMake sure you didn't make a new line and they are exactly the same'
                     #pos_hint: {"center_y": 0}
                     #pos_hint: {"x": .5}
                     #size_hint: 0.5, 0.01
-                Label:
-                    text: "Password"
-                    #pos_hint: {"center_y": 0}
-                    #pos_hint: {"x": .5}
-                    #size_hint: 1, 0.01
-                Label:
-                    text: "Re-enter password"
-                    #pos_hint: {"center_y": 0}
-                    #pos_hint: {"x": .5}
-                    #size_hint: 1, 0.01
             BoxLayout:
                 orientation: "vertical"
                 TextInput:
                     id: newname
+                    hint_text: "New Account Name"
                     size_hint: 0.5, 0.1
                     pos_hint: {"center_y": .5}
                     pos_hint: {"center_x": .5}
                 TextInput:
                     id: newpass
+                    hint_text: "Enter new password"
                     size_hint: 0.5, 0.1
                     pos_hint: {"center_y": .5}
                     pos_hint: {"center_x": .5}
                 TextInput:
                     id: secondenter
+                    hint_text: "Re-enter password"
                     size_hint: 0.5, 0.1
                     pos_hint: {"center_y": .5}
                     pos_hint: {"center_x": .5}
@@ -88,7 +82,7 @@
                     pos_hint: {"center_x": .5}
                     size_hint: .5 , .2
                     text: "Enter"
-                    on_release: root.answer_question(newpass.text,secondenter.text)
+                    on_release: root.answer_question(newpass.text,secondenter.text,newname.text)
 
 
 <WrongScreen>:
@@ -101,12 +95,12 @@
             text: "Skip -->"
             on_release: root.next()
 
-<CorrectScreen>:
+<HomePage>:
     BoxLayout:
         orientation: "vertical"
         spacing: "5"
         Label:
-            text: "CORRECT"
+            text: "You have logged in!"
         Button:
-            text: "Next -->"
-            on_release: root.next()
+            text: "Logout -->"
+                on_release: root.switch_screen()
