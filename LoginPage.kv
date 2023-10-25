@@ -7,7 +7,14 @@
     HomePage:
         name: "home"
     WrongScreen:
-        name: "wrong"
+        name: "err1"
+    SpaceErr:
+        name: "err2"
+    UnmetRequirement:
+        name: "err3"
+    AccSuccess:
+        name: "success"
+    
 
 <LoginPage>:
     BoxLayout:
@@ -23,6 +30,7 @@
             orientation: "vertical"
             TextInput:
                 id: user
+                hint_text: "Input Username"
                 size_hint: 0.5, 0.1
                 pos_hint: {"center_y": .5}
                 pos_hint: {"center_x": .5}
@@ -53,8 +61,8 @@
             StackLayout:
                 orientation: "rl-tb"
                 spacing: "10dp"
-                #Label:
-                  #  text: 'You must have at least 8 characters\nYou must have at least 1 number.\nYou must have at least 1 uppercase letter.\nYou must have at least 1 lowercase letter.\nYou must have at least 1 "special" character.\nYou have a space in your password\nMake sure you didn't make a new line and they are exactly the same'
+                Label:
+                    text: 'You must have at least 8 characters\nYou must have at least 1 number.\nYou must have at least 1 uppercase letter.\nYou must have at least 1 lowercase letter.\nYou must have at least 1 "special" character.\nYou can\'t have a space in your password\nMake sure you didn\'t make a new line and they are exactly the same.'
                     #pos_hint: {"center_y": 0}
                     #pos_hint: {"x": .5}
                     #size_hint: 0.5, 0.01
@@ -90,11 +98,46 @@
         orientation: "vertical"
         spacing: "5"
         Label:
-            text: "WRONG"
+            text: "Passwords don't match."
         Button:
-            text: "Skip -->"
+            text: "Back -->"
             on_release: root.next()
-
+<UserTakenScreen>
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "5"
+        Label:
+            text: "The typed username is taken."
+        Button:
+            text: "Back -->"
+            on_release: root.next()
+<UnmetRequirement>
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "5"
+        Label:
+            text: "You have unmet requirement(\'s).\nMake sure to double check that you have met all requirements."
+        Button:
+            text: "Back -->"
+            on_release: root.next()
+<SpaceErr>
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "5"
+        Label:
+            text: "You may not have a space in your pasword."
+        Button:
+            text: "Back -->"
+            on_release: root.next()
+<AccSuccess>
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "5"
+        Label:
+            text: "You have successfully created an account.\nMake sure you have already wrote down the account information or contact support."
+        Button:
+            text: "Login -->"
+            on_release: root.next()
 <HomePage>:
     BoxLayout:
         orientation: "vertical"
@@ -103,4 +146,4 @@
             text: "You have logged in!"
         Button:
             text: "Logout -->"
-                on_release: root.switch_screen()
+            on_release: root.switch_screen()
